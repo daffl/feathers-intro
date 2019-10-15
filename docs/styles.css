@@ -7,11 +7,11 @@ strong, th {
 }
 
 pre .string {
-  color: #e4517f !important;
+  color: #13d543 !important;
 }
 
 pre .keyword, pre .tag {
-  color: #4b4df1 !important;
+  color: #D513A5 !important;
 }
 
 .token.function {
@@ -20,5 +20,5 @@ pre .keyword, pre .tag {
 
 .bqPFUu {
   font-weight: 100;
-  color: #4b4df1;
+  color: #D513A5;
 }
