@@ -42,19 +42,19 @@ Feathers is a web-framework for creating real-time applications and APIs using J
 
 ---
 
-## Architecture over protocols
-
-The traditional (web) MVC pattern is outdated for building APIs but HTTP request/response frameworks are too low level.
-
-### What are new design patterns for creating modern applications?
-
----
-
 ## Real-time isn't a feature, it's the future
 
 Real-time updates shouldn't be an afterthought.
 
 ### What if our applications always update automatically?
+
+---
+
+## Architecture > Protocol
+
+The traditional (web) MVC pattern is outdated for building APIs but HTTP request/response frameworks are too low level.
+
+### What are new design patterns for creating modern applications?
 
 ---
 
@@ -76,7 +76,7 @@ Real-time updates shouldn't be an afterthought.
 
 - __Separation of Concerns and Testability:__ Test services separately from how they are accessed
 - __Self documenting:__ External interface as a JavaScript/TypeScript class or object
-- __Transport agnostic:__ Services can be used by any client like a GUI, REST or Socket.io API wrapper or GraphQL resolver
+- __Transport agnostic:__ Services can be used by any client like a GUI (Electron), REST or Socket.io API wrapper or GraphQL resolver
 
 ---
 
@@ -87,7 +87,7 @@ Real-time updates shouldn't be an afterthought.
 - Automatic real-time events
 - Universal usage on the client and the server
 - Integrates with any frontend framework like React, Vue, Angular, React Native
-- Existing database integrations for 15+ databases and ORMs
+- Easy database integrations (Feathers supports 15+ databases and ORMs)
 
 ---
 
@@ -106,7 +106,7 @@ Real-time updates shouldn't be an afterthought.
 
 ## Hooks (Middleware)
 
-Hooks enable re-usable workflows and cross-cutting concerns that can be added to service methods
+Hooks enable re-usable workflows and cross-cutting concerns that can be added to service methods dynamically
 
 - Validation and data pre/post-processing
 - Checking permissions
