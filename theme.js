@@ -15,15 +15,15 @@ export default {
   // custom colors
   colors: {
     ...theme.colors,
-    heading: '#4b4df1',
-    link: '#e4517f'
+    heading: '#3CF',
+    link: '#D513A5'
   },
   h1: {
-    color: '#4b4df1',
+    color: '#3CF',
     fontSize: '2.5em'
   },
   h2: {
-    color: '#4b4df1'
+    color: '#3CF'
   },
   a: {
     textDecoration: 'none'

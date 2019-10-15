@@ -5,14 +5,14 @@ import highlighter from 'prism-react-renderer/themes/ultramin';
 export { default as theme } from './theme'
 
 <Head>
-  <title>Design Patterns for Modern Web APIs</title>
+  <title>An Introduction To FeathersJS</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Raleway:100,300,400,500,700" />
   <link rel="stylesheet" href="styles.css" />
 </Head>
 
-# Design Patterns for Modern Web APIs
+# An Introduction To FeathersJS
 
-[daffl.github.io/api-patterns](https://daffl.github.io/api-patterns)
+[daffl.github.io/feathers-intro](https://daffl.github.io/feathers-intro)
 
 ---
 
@@ -28,26 +28,33 @@ export { default as theme } from './theme'
 
 ## Today I'd like to talk about
 
-- What's a design pattern
-- Service Layer
-- REST
-- Middleware
-- Real-time 
+![Feathers logo](./img/feathers-logo-wide.png)
+
+[feathersjs.com](https://feathersjs.com)
 
 ---
 
-## What's a Design Pattern?
+## What is Feathers?
 
-Design patterns are formalized best practices that a programmer
-can use to solve common problems when designing an application or system.
+![Feathers image](./img/key-image-horizontal.png)
+
+Feathers is a web-framework for creating real-time applications and APIs using JavaScript or TypeScript with Node.JS, React Native and the browser.
 
 ---
 
-## Service Layer
+## Architecture over protocols
 
-Defines an application’s boundary with a layer of services that
-establishes a set of available operations and coordinates the application’s
-response in each operation. [[P of EAA](https://martinfowler.com/eaaCatalog/serviceLayer.html)]
+The traditional (web) MVC pattern is outdated for building APIs but HTTP request/response frameworks are too low level.
+
+### What are new design patterns for creating modern applications?
+
+---
+
+## Real-time isn't a feature, it's the future
+
+Real-time updates shouldn't be an afterthought.
+
+### What if our applications always update automatically?
 
 ---
 
@@ -57,7 +64,7 @@ response in each operation. [[P of EAA](https://martinfowler.com/eaaCatalog/serv
 
 <CodeSurfer
   theme={highlighter}
-  code={require("!raw-loader!./snippets/service-layer.js").default}
+  code={require("!raw-loader!./snippets/service-example.js").default}
   lang="js"
   showNumbers={false}
   dark={false}
@@ -65,45 +72,26 @@ response in each operation. [[P of EAA](https://martinfowler.com/eaaCatalog/serv
 
 ---
 
-## Why a Service Layer?
+## Why Services?
 
-- __Separation of Concerns and Testability:__ Test the application logic separate from how it is being accessed
-- __Self documenting:__ New developers can see what the application provides in the context of the programming language
-- __Transport agnostic:__ Clients like a CLI, GUI or web framework can use the service layer directly
-
----
-
-## REST
-
-__Re__presentational __S__tate __T__ransfer is an architectural style
-that defines a set of constraints for creating web APIs.
-The HTTP _protocol_ is one implementation of this architecture. [[Fielding PHD thesis](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)]
+- __Separation of Concerns and Testability:__ Test services separately from how they are accessed
+- __Self documenting:__ External interface as a JavaScript/TypeScript class or object
+- __Transport agnostic:__ Services can be used by any client like a GUI, REST or Socket.io API wrapper or GraphQL resolver
 
 ---
 
-## REST Constraints
+## Oh... and also, features
 
-- __Client__  (Requesting and displaying) - __Server__ (Data storage and application logic)
-- __Statelessness:__ Client sends all information with each request
-- __Caching:__ Non-modifying requests can be cached
-- __Layered System:__ Simplify by layering responsibilities
-- __Resources__ and __Uniform Interface__
-
----
-
-## REST Resources and Operations
-
-A resource can be anything that is uniquely addressable.
-
-- __GET:__ Read a single or a list of resources
-- __POST:__ Create a new resource
-- __PUT:__ Replaces resource(s) with new data
-- __PATCH:__ Merges the resource(s) with new data
-- __DELETE:__ Delete the resource(s) at location
+- Service-oriented design
+- Automatic REST APIs
+- Automatic real-time events
+- Universal usage on the client and the server
+- Integrates with any frontend framework like React, Vue, Angular, React Native
+- Existing database integrations for 15+ databases and ORMs
 
 ---
 
-## REST Service Layer
+## E.g. REST APIs
 
 | HTTP method | Service layer method |
 | --- | --- |
@@ -114,63 +102,16 @@ A resource can be anything that is uniquely addressable.
 | PATCH /messages/1  | messages.patch(1, data) |
 | DELETE /messages/1 | messages.remove(1) |
 
-
 ---
 
-<CodeSurfer
-  theme={highlighter}
-  code={require("!raw-loader!./snippets/message-service.js").default}
-  lang="js"
-  showNumbers={false}
-  dark={false}
-/>
+## Hooks (Middleware)
 
----
+Hooks enable re-usable workflows and cross-cutting concerns that can be added to service methods
 
-## REST Services
-
-- Combine advantages of service layer and REST resources
-- HTTP-friendly but protocol independent
-- No repetitive GET, POST etc. handlers and routes
-- Easy to document, test and re-use
-- Encourages a layered system
-
----
-
-<Image src="img/rest-transport.svg" size="contain" />
-
----
-
-<Image src="img/rest-websocket-transport.svg" size="contain" />
-
----
-
-<Image src="img/http-socketio.svg" size="contain" />
-
----
-
-## Middleware
-
-Workflows and cross-cutting concerns that can be added to services dynamically
-
-- Validation
+- Validation and data pre/post-processing
 - Checking permissions
 - Sending emails or other notifications
 - Logging and profiling
-
----
-
-<Image src="img/middleware.svg" size="contain" />
-
----
-
-<CodeSurfer
-  theme={highlighter}
-  code={require("!raw-loader!./snippets/message-middleware.js").default}
-  lang="js"
-  showNumbers={false}
-  dark={false}
-/>
 
 ---
 
@@ -180,40 +121,28 @@ Workflows and cross-cutting concerns that can be added to services dynamically
   lang="js"
   showNumbers={false}
   dark={false}
-  steps={[
-    {},
-    { range: [1, 5] },
-    { range: [7, 22] },
-    { range: [23, 32] }
-  ]}
 />
 
 ---
 
-## Real-time
-
-| HTTP method | Service layer method | Real-time event |
-| --- | --- | --- |
-| GET /messages      | messages.find() | - |
-| GET /messages/1    | messages.get(1) | - |
-| POST /messages     | messages.create(data) | `message created` |
-| PUT /messages/1    | messages.update(1, data) | `message updated` |
-| PATCH /messages/1  | messages.patch(1, data) | `message patched` |
-| DELETE /users/1 | messages.remove(1) | `message removed` |
-
----
-
-<Image src="img/real-time.svg" size="contain" />
-
----
-
-## Putting it all Together
-
-- __Service layer:__ Interface to our application logic
-- __REST:__ An architectural design principle for creating web APIs
-- __RESTful services:__ A service layer that follows the REST architecture
-- __Middleware:__ Reusable functions that can control the flow of data
-- __Real-time:__ Events that can be sent automatically when following the REST architecture
+<CodeSurfer
+  theme={highlighter}
+  code={require("!raw-loader!./snippets/messages-service.js").default}
+  lang="js"
+  showNumbers={false}
+  dark={false}
+  steps={[
+    {},
+    { range: [1, 1] },
+    { range: [4, 6] },
+    { range: [8, 10] },
+    { range: [12, 21] },
+    { range: [24, 27] },
+    { range: [28, 35] },
+    { range: [36, 39] },
+    { range: [40, 53] }
+  ]}
+/>
 
 ---
 
@@ -221,19 +150,4 @@ Workflows and cross-cutting concerns that can be added to services dynamically
 
 - [@daffl](https://twitter.com/daffl)
 - [feathersjs.com](https://feathersjs.com)
-- [daffl.github.io/api-patterns](https://daffl.github.io/api-patterns)
-- [Design Patterns for modern Web APIs](https://blog.feathersjs.com/design-patterns-for-modern-web-apis-1f046635215)
-- [![Bidali logo](img/bidali-logo.png)](https://bidali.com)
-
----
-
-## But what about GraphQL?
-
-GraphQL is great for providing schemas and better querying but
-can benefit a lot from the REST architecture when it comes to modifying data.
-
-If it's REST __vs__ GraphQL everybody looses.
-
----
-
-<Image src="img/graphql-transport.svg" size="contain" />
+- [daffl.github.io/feathers-intro](https://daffl.github.io/feathers-intro)

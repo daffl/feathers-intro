@@ -1,0 +1,17 @@
+{
+  "name": "feathers-example",
+  "version": "1.0.0",
+  "description": "Example Feathers Quick start application",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@feathersjs/express": "^4.3.7",
+    "@feathersjs/feathers": "^4.3.7",
+    "@feathersjs/socketio": "^4.3.7"
+  }
+}

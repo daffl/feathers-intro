@@ -1,16 +1,14 @@
-class MessageService {
-
+class MyService {
   // Find a list of resources
-  find(params) {}
+  async find(params) {}
   // Get a single resource by its id
-  get(id, params) {}
+  async get(id, params) {}
   // Create a new resource
-  create(data, params) {}
+  async create(data, params) {}
   // Replace an existing resource by its id with data
-  update(id, data, params) {}
+  async update(id, data, params) {}
   // Merge new data into a resource
-  patch(id, data, params) {}
+  async patch(id, data, params) {}
   // Remove a resource by its id
-  remove(id, params) {}
-
+  async remove(id, params) {}
 }
